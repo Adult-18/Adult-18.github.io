@@ -1,0 +1,54 @@
+<related>
+  {{ $currentPost := . }} {{/* Simpan postingan saat ini */}}
+  {{ $limit := 6 }}    {{/* Jumlah postingan terkait yang diinginkan */}}
+  {{ $halfLimit := div $limit 2 }} {{/* Setengah dari jumlah postingan untuk mencari sebelum dan sesudah */}}
+
+  {{/* 1. Ambil semua halaman reguler, KECUALIKAN postingan yang sedang dilihat */}}
+  {{ $allPostsExcludingCurrent := where site.RegularPages "Permalink" "!=" $currentPost.Permalink }}
+
+  {{/* 2. Bagi postingan menjadi yang lebih lama dan lebih baru dari postingan saat ini */}}
+  {{ $olderPosts := where $allPostsExcludingCurrent "Date" "<" $currentPost.Date }}
+  {{ $newerPosts := where $allPostsExcludingCurrent "Date" ">" $currentPost.Date }}
+
+  {{/* 3. Ambil postingan terdekat dari yang lebih lama (terbaru dari grup lama) */}}
+  {{ $closestOlder := (first $halfLimit $olderPosts.ByDate.Reverse) }} 
+  {{/* .ByDate.Reverse untuk mendapatkan yang terbaru dari grup 'lebih lama', lalu ambil 'halfLimit' */}}
+
+  {{/* 4. Ambil postingan terdekat dari yang lebih baru (terlama dari grup baru) */}}
+  {{ $closestNewer := (first $halfLimit $newerPosts.ByDate) }} 
+  {{/* .ByDate untuk mendapatkan yang terlama dari grup 'lebih baru', lalu ambil 'halfLimit' */}}
+
+  {{/* 5. Gabungkan kedua daftar dan urutkan kembali dari yang lama ke baru */}}
+  {{ $relatedPosts := ($closestOlder | union $closestNewer).ByDate }}
+
+  {{/* 6. Pastikan jumlah tidak melebihi $limit jika ada salah satu grup yang kurang dari $halfLimit */}}
+  {{ if gt (len $relatedPosts) $limit }}
+    {{ $relatedPosts = first $limit $relatedPosts }}
+  {{ end }}
+
+  {{/* 7. Jalankan blok ini hanya jika ada post yang ditemukan */}}
+  {{ with $relatedPosts }}
+    <div class="d-g gg-15 gtc-r">
+        
+        {{/* 8. Ulangi (loop) setiap post yang ada di variabel $relatedPosts */}}
+        {{ range . }}
+            <article>
+                <a class="bs-bb p-r" href="{{ .Permalink }}">
+                    <div class="p-a bc-t br-3" style="top:7px;right:5px;padding:0 5px;color:rgb(250, 250, 147)">
+                        <span class="fs-15 fw-b">
+                            {{ .Params.duration }}
+                        </span>
+                    </div>
+                    <div class="o-h mb-7">
+                        <img loading="lazy" class="thumb of-c d-b bc-1" src="{{ .Site.Params.Source }}{{ .Params.image }}" alt="{{ .Title }}">
+                    </div>
+                    <h2 class="o-h fs-15 to-e d-2le c-1">
+                        {{ .Title }}
+                    </h2>
+                </a>
+            </article>
+        {{ end }}
+        
+    </div>
+  {{ end }}
+</related>

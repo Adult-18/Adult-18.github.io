@@ -1,0 +1,156 @@
+<div class="d-g gg-15">
+  {{/* Cek apakah ada parameter 'linkVideo' di front matter.
+       Jika ada, kita akan menampilkan pemutar video. */}}
+  {{ if .Params.linkVideo }}
+
+    {{/* Tag video HTML5 */}}
+    <video id="video-player" 
+           controls {{/* Biarkan kontrol dasar seperti play/pause */}}
+           controlsList="nodownload" {{/* Atribut HTML5 untuk menyembunyikan tombol download */}}
+           width="100%" 
+           poster="{{ .Site.Params.Source }}{{ .Params.image }}" {{/* Poster akan ditampilkan SEBELUM video diputar */}}
+           style="display: block;"> {{/* Video langsung terlihat */}}
+      <source src="{{ .Params.linkVideo }}" type="video/mp4">
+      Browser Anda tidak mendukung tag video.
+    </video>
+
+    {{/* JavaScript untuk mencegah download/klik kanan */}}
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        var videoPlayer = document.getElementById('video-player');
+
+        // Mencegah munculnya menu konteks (klik kanan) pada elemen video
+        if (videoPlayer) {
+          videoPlayer.addEventListener('contextmenu', function(e) {
+            e.preventDefault(); // Mencegah aksi default browser (menampilkan menu konteks)
+            // Opsional: Anda bisa menambahkan alert atau pesan lain di sini
+            // alert("Download video tidak diizinkan.");
+          });
+        }
+      });
+    </script>
+
+  {{ else }}
+    {{/* Jika tidak ada 'linkVideo', tampilkan konten markdown biasa */}}
+    {{ .Content }}
+  {{ end }}
+</div>
+
+{{/* POPUP BANNER */}}
+{{ if .Params.linkVideo }} {{/* Hanya tampilkan popup jika ada video */}}
+<style>
+  /* CSS Global dari yang Anda berikan */
+  html,body,a,abbr,acronym,address,applet,b,big,blockquote,caption,center,cite,code,dd,del,dfn,div,dl,dt,em,fieldset,font,form,input,h1,h2,h3,h4,h5,h6,i,iframe,img,ins,kbd,label,legend,li,object,p,pre,q,s,samp,small,span,strike,strong,sub,sup,table,tbody,tfoot,thead,tt,u,ul,var,select{padding:0;margin:0;outline:none;vertical-align:baseline;background:0 0;text-decoration:none}html{scroll-behavior:smooth}body{font-family:system-ui;word-wrap:break-word;margin:0;color:#cccccc;line-height:1.5;font-size:17px;background-color:#15202b}a,ul,li,iframe,input,button{border:0;outline:0;vertical-align:baseline;text-decoration:none}ul li{list-style:none}a{color:#209cee}a:hover{filter:brightness(91%);transition:1s;color:#209cee}
+
+  *,::after,::before,bs-bb{box-sizing:border-box}
+  .ai-c{align-items:center}.ac-sb{align-content:space-between}
+  .bc-1,img,iframe{background-color:#1f1f1f}.bc-2{background-color:#1f1f1f}.bc-3,#video-player{background-color:#000}.bc-t{background-color:rgb(31,31,31,0.5)}.br-3{border-radius:3px}.bbs-d{border-bottom-style:dotted}.bs-bb{box-sizing:border-box}.br-100{border-radius:100%}
+  .c-1{color:#fff}.c-2,button{color:#209cee}.c-3{color:#cccccc}.c-r{color:#D70040}
+  .d-b{display:block}.d-g{display:grid}.d-f{display:flex}.d-n{display:none}.d-i{display:inline}.d-ib{display:inline-block}
+  .fs-11{font-size:11px}.fs-13{font-size:13px}.fs-15{font-size:15px}.fs-17{font-size:17px}.fs-20{font-size:20px}.fw-w{flex-wrap:wrap}.fw-b{font-weight:bold}
+  .gg-5{grid-gap:5px}.gg-10{grid-gap:10px}.gg-15{grid-gap:15px}.gg-20{grid-gap:20px}.gtc-e{grid-template-columns:repeat(auto-fill,minmax(79px,1fr))}.gtc-2{grid-template-columns:1fr 1fr}
+  .h-f{height:100%}
+  .jc-sb{justify-content:space-between}.jc-c{justify-content:center}
+  .m-0{margin:0}.m-5{margin:5px}.mr-5{margin-right:5px}.mb-7{margin-bottom:7px}.ml-5{margin-left:5px}.m-0a{margin:0 auto}.max-h{max-height:300px}
+  .o-a{overflow:auto}.o-v{overflow:visible}.o-h{overflow:hidden}.of-c{object-fit:cover}
+  .p-0{padding:0}.p-5{padding:5px}.pt-1{padding-top:1px}.pr-15{padding-right:15px}.pl-15{padding-left:15px}.p-r{position:relative}.p-a{position:absolute}
+  .to-e{text-overflow:ellipsis}.title{color:#E59866;padding:0;margin:0}.ta-c{text-align:center}
+  .ws-n{white-space:nowrap}.widget{padding:10px;margin:0;overflow:hidden;position:relative}.w-f{width:100%}
+  .z-index{1000}
+
+  .tm span + span:before{content:"·";align-items:center;color:#ccc}
+  .d-2le{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+  #video-player{margin:0;background-image:url(https://service.acefile.co/assets/preload.svg);background-position:center;background-repeat:no-repeat}
+
+  @media(min-width:1025px){.gtc-r{grid-template-columns:repeat(auto-fill,minmax(169px,1fr))}.gtc-m{grid-template-columns:1fr 380px}.gtc-mi{grid-template-columns:1fr 40px}#video-player{width:100%;height:530px}.thumb{width:100%;height:245px}.thumbi{width:100%;height:40px}.sticky{position:-webkit-sticky;position:sticky;top:15px;align-self:start}}
+  @media(max-width:1024px){.gtc-r{grid-template-columns:repeat(auto-fill,minmax(205px,1fr))}.gtc-m{grid-template-columns:1fr 380px}.gtc-mi{grid-template-columns:1fr 40px}#video-player{width:100%;height:480px}.thumb{width:100%;height:280px}.thumbi{width:100%;height:40px}}
+  @media(min-width:950px){.sticky{position:-webkit-sticky;position:sticky;top:15px;align-self:start}}
+  @media(max-width:950px){.gtc-m{grid-template-columns:1fr}.#video-player{width:100%;height:380px}thumb{width:100%;height:170px}}
+  @media(max-width:768px){.thumb{width:100%;height:170px}}
+  @media(max-width:600px){.gtc-r{grid-template-columns:repeat(auto-fill,minmax(151px,1fr))}.gtc-mi{grid-template-columns:1fr 30px}.thumb{width:100%;height:203px}.thumbi{width:100%;height:30px}.max-h{max-height:300px}#video-player{width:100%;height:320px}}
+  @media(max-width:480px){#video-player{width:100%;height:230px}.thumb{width:100%;height:230px}}
+  @media(max-width:320px){.gtc-r{grid-template-columns:repeat(auto-fill,minmax(153px,1fr))}.thumb{width:100%;height:173px}#video-player{width:100%;height:230px}}
+
+  /* Styling khusus untuk overlay popup */
+  #popup-overlay {
+      display: none; /* Awalnya disembunyikan */
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.8); /* Background gelap transparan */
+      z-index: 9999; /* Pastikan di atas semua elemen lain */
+      justify-content: center; /* Pusatkan secara horizontal */
+      align-items: center; /* Pusatkan secara vertikal */
+      overflow: auto; /* Memungkinkan scroll jika konten terlalu besar */
+  }
+
+  /* Styling untuk kotak konten popup */
+  #popup-content {
+      background-color: rgba(255, 255, 255, 0.719);
+      padding: 8px;
+      border-radius: 8px;
+      text-align: center;
+      max-width: 90%; /* Batasi lebar agar responsif */
+      max-height: 90%; /* Batasi tinggi agar responsif */
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  }
+
+  /* Styling untuk gambar iklan di dalam popup */
+  #popup-content img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+      margin: 0 auto 5px auto; /* Pusatkan gambar dan beri jarak bawah */
+      cursor: pointer; /* Menunjukkan bahwa gambar dapat diklik */
+      /* Override background-color dari global CSS jika perlu, contoh: */
+      background-color: transparent; 
+  }
+
+  /* Styling untuk teks instruksi di dalam popup */
+  #popup-text {
+      font-size: 1.2em;
+      color: #080808; /* Warna gelap agar terlihat di background putih popup */
+      margin-bottom: 0; /* Hapus margin bawah default paragraph */
+      max-width: 230px;
+  }
+</style>
+
+<div id="popup-overlay">
+    <div id="popup-content">
+        {{/* Gambar Iklan (pastikan .Site.Params.adBannerImage dan .Site.Params.adLink sudah didefinisikan di config.toml Anda) */}}
+        <a id="popup-ad-link" href="https://www.revenuecpmgate.com/xqxar5s3ga?key=26ac466f25290e59c5a67e1484655291" target="_blank" rel="noopener noreferrer">
+            <img src="{{ .Site.Params.Source }}{{ .Params.image }}" 
+                 alt="Klik iklan untuk melanjutkan nonton film">
+        </a>
+        <p id="popup-text">
+            Klik 1X iklan gambar untuk melanjutkan nonton filmnya.
+        </p>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var popupOverlay = document.getElementById('popup-overlay');
+        var popupAdLink = document.getElementById('popup-ad-link');
+
+        // Tampilkan popup setelah 30 detik
+        // Menggunakan "flex" untuk display agar bisa memusatkan konten secara horizontal dan vertikal
+        setTimeout(function() {
+            if (popupOverlay) {
+                popupOverlay.style.display = 'flex';
+            }
+        }, 30000); // 30000 milidetik = 30 detik
+
+        // Sembunyikan popup saat link iklan diklik
+        if (popupAdLink) {
+            popupAdLink.addEventListener('click', function() {
+                if (popupOverlay) {
+                    popupOverlay.style.display = 'none';
+                }
+            });
+        }
+    });
+</script>
+{{ end }}

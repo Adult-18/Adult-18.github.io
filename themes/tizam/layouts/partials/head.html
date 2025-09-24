@@ -1,0 +1,59 @@
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  
+  <!-- Favicon -->
+  <link rel="shortcut icon" href="{{ .Site.Params.favicon | default "/images/favicon.ico" | absURL }}" type="image/x-icon">
+
+  <title>
+    {{- if .IsHome -}}
+      {{ .Site.Title }}
+    {{- else -}}
+      {{ .Title }} | {{ .Site.Title }}
+    {{- end -}}
+  </title>
+
+  {{- /* Meta Description yang Dioptimalkan */ -}}
+  {{- $seoDescription := "" -}}
+  {{- if .Summary -}} {{/* Gunakan Summary dari Markdown (jika ada konten di bawah front matter) */}}
+    {{- $seoDescription = .Summary -}}
+  {{- else -}}
+    {{- $seoDescription = .Site.Params.Description -}}
+  {{- end -}}
+  {{- .Scratch.Set "seoDescription" ($seoDescription | plainify | truncate 160) -}}
+  <meta name="description" content="{{ .Scratch.Get "seoDescription" }}">
+
+  <link rel="canonical" href="{{ .Permalink }}">
+  <link rel="stylesheet" href="{{ "css/style.css" | relURL }}">
+
+  {{- /* Twitter Cards */ -}}
+  {{- if isset .Site.Params "twitter" -}}
+    <meta name="twitter:card" content="{{ if .Params.image }}summary_large_image{{ else }}summary{{ end }}">
+    <meta name="twitter:site" content="{{ .Site.Params.twitter }}">
+    <meta name="twitter:creator" content="{{ .Site.Params.twitter }}">
+    
+    {{- $twitterTitle := printf "Nonton" .Title -}}
+    <meta name="twitter:title" content="{{ $twitterTitle }}">
+    <meta name="twitter:description" content="{{ .Scratch.Get "seoDescription" }}">
+    {{- with .Params.image -}}<meta name="twitter:image" content="{{ . | absURL }}">{{- end -}}
+  {{- end -}}
+
+  {{- /* Open Graph */ -}}
+  <meta property="og:locale" content="id_ID">
+  <meta property="og:site_name" content="{{ .Site.Title }}">
+  <meta property="og:url" content="{{ .Permalink }}">
+
+  <meta property="og:type" content="video.episode">
+  {{- $ogTitle := printf "Nonton" .Title -}}
+  <meta property="og:title" content="{{ $ogTitle }}">
+  <meta property="og:description" content="{{ .Scratch.Get "seoDescription" }}">
+  {{- with .Params.image -}}
+    <meta property="og:image" content="{{ . | absURL }}">
+    <meta property="og:image:secure_url" content="{{ . | absURL }}">
+  {{- end -}}
+
+  {{- /* Schema.org Structured Data (JSON-LD) */ -}}
+  {{- /* Ini akan selalu dirender untuk halaman video */ -}}
+
+</head>

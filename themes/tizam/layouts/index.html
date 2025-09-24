@@ -1,0 +1,50 @@
+{{ define "main" }}
+<div class="d-g gg-15">
+    {{/* 1. Tentukan halaman yang ingin dipaginasi */}}
+    {{ $pagesToPaginate := where .Site.RegularPages "Params.linkVideo" "!=" nil }}
+
+    {{/* 2. Panggil fungsi .Paginate */}}
+    {{/* Anda bisa mengatur jumlah item per halaman di config.toml/yaml */}}
+    {{/* Jika tidak, Hugo akan menggunakan default (biasanya 10) */}}
+    {{/* Contoh: {{ $paginator := .Paginate ($pagesToPaginate) 21 }} untuk 21 item per halaman */}}
+    {{ $paginator := .Paginate $pagesToPaginate }}
+
+    <div class="d-g gg-15 gtc-r">
+        {{/* 3. Gunakan $paginator.Pages untuk loop */}}
+        {{ range $paginator.Pages }}
+            <article><a class="bs-bb p-r" href="{{ .Permalink }}">
+                <div class="p-a bc-t br-3" style="top:7px;right:5px;padding:0 5px;color:rgb(250, 250, 147)">
+                    <span class="fs-15 fw-b">
+                        {{ .Params.duration }}
+                    </span>
+                </div>
+                <div class="o-h mb-7">
+                    {{/* Sebaiknya tambahkan loading="lazy" juga di sini */}}
+                    <img loading="lazy" class="thumb of-c d-b bc-1" src="{{ .Site.Params.Source }}{{ .Params.image }}" alt="{{ .Title }}">
+                </div>
+                <h2 class="o-h fs-15 to-e d-2le c-1">
+                    {{ .Title }}
+                </h2>
+            </a></article>
+        {{ end }}
+    </div>
+
+    {{/* 4. Tambahkan kontrol Paginator (salin dari template list Anda) */}}
+    <div class="jc-c d-f mt-15"> {{/* Anda mungkin perlu menambahkan margin top (mt-15) atau styling lain */}}
+      {{ if $paginator.HasPrev }}
+      <a class="d-f ai-c mr-5 c-1" href="{{ $paginator.Prev.URL }}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-left-square-fill" viewBox="0 0 16 16">
+          <path d="M16 14a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12zm-4.5-6.5H5.707l2.147-2.146a.5.5 0 1 0-.708-.708l-3 3a.5.5 0 0 0 0 .708l3 3a.5.5 0 0 0 .708-.708L5.707 8.5H11.5a.5.5 0 0 0 0-1z"/>
+        </svg>
+      </a>
+      {{ end }}
+      {{ if $paginator.HasNext }}
+      <a class="d-f ai-c br-3 c-1" href="{{ $paginator.Next.URL }}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-arrow-right-square-fill" viewBox="0 0 16 16">
+          <path d="M0 14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v12zm4.5-6.5h5.793L8.146 5.354a.5.5 0 1 1 .708-.708l3 3a.5.5 0 0 1 0 .708l-3 3a.5.5 0 0 1-.708-.708L10.293 8.5H4.5a.5.5 0 0 1 0-1z"/>
+        </svg>
+      </a>
+      {{ end }}
+    </div>
+</div>
+{{ end }}

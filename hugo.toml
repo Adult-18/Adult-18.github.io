@@ -1,0 +1,14 @@
+baseURL = 'https://Adult-18.github.io'
+languageCode = 'id-ID'
+title = 'Adult-18'
+theme = 'tizam'
+enableRobotsTXT = 'true'
+paginate = 21
+
+[params]
+  author = 'Rizqy'
+  email = 'rizqymedsos@gmail.com'
+  Description = 'Adult-18 adalah web nonton film dewasa tanpa sensor gratis tanpa vpn, full movie gratis.'
+  favicon = 'https://img.icons8.com/quill/512/209cee/netflix.png'
+  twitter = 'Rizqy'
+  source = 'https://adylt.tizam.ru/'

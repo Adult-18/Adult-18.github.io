@@ -1,0 +1,14 @@
+{{ define "main" }}
+  {{ if or (isset .Params "image") (isset .Params "linkVideo") }}
+    <div class="d-g gg-20 gtc-m">
+      <div class="sticky">
+        {{- partial "main.html" . -}}
+      </div>
+      <div class="sticky">
+        {{- partial "sidebar.html" . -}}
+      </div>
+    </div>
+  {{ else }}
+    <div class="d-g gg-5">{{- .Content -}}</div>
+  {{ end }}
+{{ end }}
