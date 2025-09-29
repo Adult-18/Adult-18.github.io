@@ -42,10 +42,10 @@ html,body,a,abbr,acronym,address,applet,b,big,blockquote,caption,center,cite,cod
 #video-player{margin:0;background-image:url(https://service.acefile.co/assets/preload.svg);background-position:center;background-repeat:no-repeat}
 
 @media(min-width:1025px){.gtc-r{grid-template-columns:repeat(auto-fill,minmax(380px,1fr))}.gtc-m{grid-template-columns:1fr 380px}.gtc-mi{grid-template-columns:1fr 40px}#video-player{width:100%;height:530px}.thumb{width:100%;height:245px}.thumbi{width:100%;height:40px}.sticky{position:-webkit-sticky;position:sticky;top:15px;align-self:start}}
-@media(max-width:1024px){.gtc-r{grid-template-columns:repeat(auto-fill,minmax(205px,1fr))}.gtc-m{grid-template-columns:1fr 380px}.gtc-mi{grid-template-columns:1fr 40px}#video-player{width:100%;height:480px}.thumb{width:100%;height:280px}.thumbi{width:100%;height:40px}}
+@media(max-width:1024px){.gtc-r{grid-template-columns:repeat(auto-fill,minmax(380px,1fr))}.gtc-m{grid-template-columns:1fr 380px}.gtc-mi{grid-template-columns:1fr 40px}#video-player{width:100%;height:480px}.thumb{width:100%;height:280px}.thumbi{width:100%;height:40px}}
 @media(min-width:950px){.sticky{position:-webkit-sticky;position:sticky;top:15px;align-self:start}}
 @media(max-width:950px){.gtc-m{grid-template-columns:1fr}.#video-player{width:100%;height:380px}thumb{width:100%;height:170px}}
 @media(max-width:768px){.thumb{width:100%;height:170px}}
-@media(max-width:600px){.gtc-r{grid-template-columns:repeat(auto-fill,minmax(151px,1fr))}.gtc-mi{grid-template-columns:1fr 30px}.thumb{width:100%;height:203px}.thumbi{width:100%;height:30px}.max-h{max-height:300px}#video-player{width:100%;height:320px}}
+@media(max-width:600px){.gtc-r{grid-template-columns:repeat(auto-fill,minmax(380px,1fr))}.gtc-mi{grid-template-columns:1fr 30px}.thumb{width:100%;height:203px}.thumbi{width:100%;height:30px}.max-h{max-height:300px}#video-player{width:100%;height:320px}}
 @media(max-width:480px){#video-player{width:100%;height:230px}.thumb{width:100%;height:230px}}
-@media(max-width:320px){.gtc-r{grid-template-columns:repeat(auto-fill,minmax(153px,1fr))}.thumb{width:100%;height:173px}#video-player{width:100%;height:230px}}
+@media(max-width:320px){.gtc-r{grid-template-columns:repeat(auto-fill,minmax(380px,1fr))}.thumb{width:100%;height:173px}#video-player{width:100%;height:230px}}
