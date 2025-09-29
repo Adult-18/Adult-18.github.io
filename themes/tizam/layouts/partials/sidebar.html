@@ -1,6 +1,6 @@
 <related>
   {{ $currentPost := . }} {{/* Simpan postingan saat ini */}}
-  {{ $limit := 6 }}    {{/* Jumlah postingan terkait yang diinginkan */}}
+  {{ $limit := 9 }}    {{/* Jumlah postingan terkait yang diinginkan */}}
   {{ $halfLimit := div $limit 2 }} {{/* Setengah dari jumlah postingan untuk mencari sebelum dan sesudah */}}
 
   {{/* 1. Ambil semua halaman reguler, KECUALIKAN postingan yang sedang dilihat */}}
@@ -40,7 +40,7 @@
                         </span>
                     </div>
                     <div class="o-h mb-7">
-                        <img loading="lazy" class="thumb of-c d-b bc-1" src="{{ .Site.Params.Source }}{{ .Params.image }}" alt="{{ .Title }}">
+                        <img loading="lazy" class="thumb of-c d-b bc-1" src="{{ .Site.Params.Source }}{{ .Params.image }}/posters/3.jpg" alt="{{ .Title }}">
                     </div>
                     <h2 class="o-h fs-15 to-e d-2le c-1">
                         {{ .Title }}

@@ -7,7 +7,7 @@
          Idealnya, ini dimuat sekali di <head> atau footer situs Anda. */}}
     <script src="/js/jwplayer.js"></script> {{/* Ganti YOUR_JWPLAYER_ID dengan ID perpustakaan JWPlayer Anda */}}
     <script>
-      // Atur kunci JWPlayer Anda
+      // Atur kunci JWPlayer Anda Cadangan OIbUQwqK7N+dhNh3JcWn/11UXId1ErQN8gxAqPQ0Qk6FDzI7WgEOEvzikB2abtsL
       jwplayer.key = "uoW6qHjBL3KNudxKVnwa3rt5LlTakbko9e6aQ6VUyKQ=";
     </script>
 
@@ -18,8 +18,8 @@
       document.addEventListener('DOMContentLoaded', function() {
         // Inisialisasi JWPlayer
         jwplayer("jwplayer-container").setup({
-            file: "{{ .Params.linkVideo }}",
-            image: "{{ .Site.Params.Source }}{{ .Params.image }}", // Poster video
+            file: "{{ .Site.Params.Source }}{{ .Params.linkVideo }}/master.m3u8",
+            image: "{{ .Site.Params.Source }}{{ .Params.image }}/posters/3.jpg", // Poster video
             width: "100%",
             aspectratio: "16:9", // Rasio aspek video (misal: 16:9 atau 4:3)
             autostart: false, // Atur ke true jika Anda ingin video otomatis diputar

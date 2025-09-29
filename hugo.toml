@@ -3,7 +3,7 @@ languageCode = 'id-ID'
 title = 'Adult-18'
 theme = 'tizam'
 enableRobotsTXT = 'true'
-paginate = 21
+paginate = 15
 
 [params]
   author = 'Rizqy'
@@ -11,4 +11,4 @@ paginate = 21
   Description = 'Adult-18 adalah web nonton film dewasa tanpa sensor gratis tanpa vpn, full movie gratis.'
   favicon = 'https://img.icons8.com/quill/512/209cee/netflix.png'
   twitter = 'Rizqy'
-  source = 'https://adylt.tizam.ru/'
+  source = 'https://e.streamqq.com/videos/'
